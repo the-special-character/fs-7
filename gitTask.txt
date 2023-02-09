@@ -16,5 +16,14 @@
 -> alias
 
 -> learn code diff
-->
+-> git checkout
+-> git restore
+
+-> create branch (to avoid conflict) git branch <name>
+-> git switch <name>
+-> git switch -C <name>
+
+
+-> Pull request(code review)
+
 
