@@ -1,0 +1,29 @@
+1. Distributed approch
+2. only store changed data(occupy less memory)
+3. git is local server(distributed server) while github is remote server(centralize server)
+4 Git stages -> Create Files  -> push file to stagging environment(git add .) -> pish file to local server(git commit -m "message")
+5. set git config 
+    -> 1 local config(For only project)
+    -> 2 Global config(for user)
+    -> 3 System config(for entire system)
+6 config 
+    -> email
+    -> name
+    -> editor
+    -> lineEnd
+7 check histoty
+-> git log
+-> alias
+
+-> learn code diff
+-> git checkout
+-> git restore
+
+-> create branch (to avoid conflict) git branch <name>
+-> git switch <name>
+-> git switch -C <name>
+
+
+-> Pull request(code review)
+
+
