@@ -48,6 +48,16 @@
 
     <meta name="description" content="" />
     <meta name="keywords" content="javascript, developer, " />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- <meta property="og:title" content="John Doe profile page" />
     <meta property="og:site_name" content="Open Graph protocol examples" />
@@ -159,6 +169,8 @@
     </script> -->
   </head>
   <body>
+    <h1 style="font-family: 'Merriweather', serif">नमस्ते</h1>
+    <!-- <h1 style="font-family: 'Merriweather', serif">Hello world</h1> -->
     <!-- UI -->
     <!-- SEO -->
     <!-- Accebility -->
@@ -169,19 +181,127 @@
 
     <!-- semantic -->
 
-    <address></address>
-
-    <time> </time>
-
     <header>
-      <nav></nav>
+      <a href="#">Logo</a>
+      <nav>
+        <ul>
+          <li>
+            <a href="#">Home</a>
+          </li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <!-- 
+        
+         -->
+      </nav>
     </header>
+    <aside></aside>
+    <main>
+      <div role="banner"></div>
+      <section>
+        <article>
+          <address></address>
+          <time></time>
+        </article>
+      </section>
+      <details open>
+        <summary>Product Name</summary>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quae
+          ratione, laborum minus repellat, magnam blanditiis illo fuga tempore
+          ea nam rem rerum ipsam iste eius fugit. Facilis hic ipsum adipisci.
+        </p>
+      </details>
+      <section></section>
+      <section></section>
+      <section></section>
+    </main>
+    <aside></aside>
     <footer></footer>
 
-    <article></article>
-    <main></main>
-    <em></em>
-    <strong></strong>
+    <!-- <picture>
+      <source
+        srcset="./assets/images/banner@1x.jpg"
+        media="(max-width: 640px)"
+      />
+      <source
+        srcset="./assets/images/banner@2x.jpg"
+        media="(min-width: 640px)"
+      />
+      <img
+        src="./assets/images/banner@1x.jpg"
+        alt="banner"
+        style="width: 200px; aspect-ratio: 3 /4"
+      />
+    </picture> -->
+
+    <!-- <picture>
+      <source srcset="./assets/images/banner.avif" type="image/avif" />
+      <source srcset="./assets/images/banner.webp" type="image/webp" />
+      <img src="./assets/images/banner@3x.jpg" alt="" />
+    </picture> -->
+
+    <!-- <img
+      src="./assets/images/banner@3x.jpg"
+      alt="banner"
+      style="width: 500px; height: 400px"
+    /> -->
+    <!-- media="(min-width: 640px)" -->
+    <!-- <picture>
+      <source
+        srcset="
+          ./assets/images/banner@1x.jpg,
+          ./assets/images/banner@2x.jpg 2.5x
+        "
+      />
+      <img src="./assets/images/banner@3x.jpg" alt="banner" />
+    </picture> -->
+
+    <!-- <audio
+      controls
+      muted
+      loop
+      src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
+    ></audio> -->
+
+    <video
+      controls
+      muted
+      poster="./assets/images/banner@1x.jpg"
+      disableremoteplayback
+      controlslist="nofullscreen nodownload noremoteplayback noplaybackrate foobar"
+      src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"
+    ></video>
+
+    <form>
+      <div style="position: relative">
+        <!-- <label
+          for="name"
+          style="
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+          "
+          >Full Name</label
+        > -->
+        <input
+          type="text"
+          id="name"
+          aria-disabled="true"
+          aria-label="Full Name"
+          aria-errormessage="nameError"
+          aria-invalid="true"
+        />
+        <span id="nameError" aria-live="assertive">something went wrong</span>
+      </div>
+    </form>
 
     <!-- h1 can use only once -->
     <!-- never change sequance of h1-h6 -->
