@@ -3,12 +3,12 @@ header a {
     text-decoration: none;
 }
 
-div > h1 {
-     color: grey;
-     font-size: 2rem;
+div>h1 {
+    color: grey;
+    font-size: 2rem;
 }
 
-div > h2 {
+div>h2 {
     color: grey;
     font-size: 1.5rem;
 }
@@ -17,7 +17,7 @@ header {
     font-size: 4rem;
 }
 
-footer > a {
+footer>a {
     background-color: blue;
     font-size: 1.5em;
     text-decoration: none;
@@ -29,6 +29,6 @@ img {
     width: 50vw;
 }
 
-p  {
+p {
     font-size: 1rem;
 }
