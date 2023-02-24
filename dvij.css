@@ -1,0 +1,31 @@
+header a{
+    color: red;
+    text-decoration:none ;
+
+} 
+
+h1 {
+    color: gray;
+    font-size: 2rem;
+}
+section > h1{
+    color: grey;
+    font-size: 1.75rem;
+}
+
+header {
+    font-size: 4rem;
+}
+ 
+footer > a{
+    background-color: blue;
+    font-size: 1.75rem;
+}
+
+img {
+    width: 50vh;
+
+}
+p{
+    font size :1rem; ;
+}
