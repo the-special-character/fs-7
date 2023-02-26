@@ -1,0 +1,33 @@
+header a{
+    color : red;
+    text-decoration: none;
+}
+
+h2{
+    color: gray;
+}
+
+div:first-child > h2{
+    font-size: 2.25rem;
+}
+
+div:last-child > h2{
+    font-size: 1.5rem;
+}
+
+header{
+    font-size: 4rem;
+}
+
+footer > a{
+    background-color: blue;
+    font-size: 1.5rem;
+}
+
+img{
+    width: 50vw;
+}
+
+p{
+    font-size: 1rem;
+}
