@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* :root {
+  --fonts: "Poppins", sans-serif;
+  --text: "#000";
+  --background: "#fff";
+  --primary-color1: #ffffff;
+  --primary-color2: #f1f1f1;
+  --primary-color3: #9c9c9c;
+  --primary-color4: #808080;
+  --primary-color5: #555555;
+  --primary-color6: #000000;
+} */
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #1b1b1b;
+    --text-color: #d0d0d0;
+  }
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --text: "#fff";
+    --background: "#000";
+    --primary-color1: #ffffff;
+    --primary-color2: #f1f1f1;
+    --primary-color3: #9c9c9c;
+    --primary-color4: #808080;
+    --primary-color5: #555555;
+    --primary-color6: #000000;
+  }
+} */
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+h1 {
+  font-family: var(--fonts);
+  margin: 10px 0;
+}
+
+/* h2 {
+}
+
+h3 {
+}
+
+h4 {
+}
+
+h5 {
+}
+
+h6 {
+}
+
+p.small {
+}
+
+p.large {
+}
+
+p {
+}
+
+a {
+}
+
+a:hover {
+}
+
+blockquote {
+}
+
+label {
+}
+
+figure {
+}
+
+figcaption {
+}
+
+strong {
+}
+
+em {
+}
+
+ol {
+}
+
+ul {
+}
+
+img {
+}
+
+code {
+}
+
+pre {
+}
+
+video {
+}
+
+hr {
+}
+
+select {
+}
+
+details {
+}
+
+details > summary {
+}
+
+details[open] {
+}
+
+nav {
+}
+
+.btn {
+}
+
+.btn.btn__primary {
+}
+
+.btn.btn__secondary {
+}
+
+@media screen and (min-width: 640px) {
+  h1 {
+  }
+  h2 {
+  }
+
+  h3 {
+  }
+
+  h4 {
+  }
+
+  h5 {
+  }
+
+  h6 {
+  }
+}
+
+@media screen and (min-width: 768px) {
+  h1 {
+  }
+  h2 {
+  }
+
+  h3 {
+  }
+
+  h4 {
+  }
+
+  h5 {
+  }
+
+  h6 {
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  h1 {
+  }
+  h2 {
+  }
+
+  h3 {
+  }
+
+  h4 {
+  }
+
+  h5 {
+  }
+
+  h6 {
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  h1 {
+  }
+  h2 {
+  }
+
+  h3 {
+  }
+
+  h4 {
+  }
+
+  h5 {
+  }
+
+  h6 {
+  }
+} */
