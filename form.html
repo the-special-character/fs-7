@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <form action="">
+            <div>
+                <div>
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name">
+                    <button type="submit">submit</button>
+                </div>
+
+                <div>
+                    <label for="name">Full Name</label>
+                    <input type="text" required id="name">
+                    <button type="submit">submit</button>
+                </div>
+
+                <div>
+                    <label for="name"></label>
+                    <input type="text" id="name" placeholder="Full Name">
+                </div>
+
+                <div style="position: relative;">
+                    <label for="name" style="position: absolute;
+                        width: 1px;
+                        height: 1px;
+                        padding: 0;
+                        margin: -1px;
+                        overflow: hidden;
+                        clip: rect(0, 0, 0, 0);
+                        white-space: nowrap;
+                        border-width: 0;">
+                    </label>
+                    <input type="text" id="name">
+                </div>
+
+                <div>
+                    <input type="text" id="name" aria-label="Full Name">
+                </div>
+
+                <div>
+                    <input type="text" id="name" aria-label="Full Name" autocomplete="Full Name">
+                </div>
+
+                <div>
+                    <label for="Email">Email</label>
+                    <input type="Email" id="Email">
+                </div>
+
+                <div>
+                    <label for="Email">Email</label>
+                    <input type="Email" id="Email" autocomplete="Email">
+                </div>
+
+                <div>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" autocomplete="tel">
+                </div>
+
+                <div>
+                    <label for="search">Search</label>
+                    <input type="text">
+                </div>
+
+                <div>
+                    <label for="search">Search</label>
+                    <input type="search">
+                </div>
+
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" autocomplete="current-password">
+                </div>
+
+                <div>
+                    <label for="new-password">New password</label>
+                    <input type="password" id="new-password" autocomplete="new-password">
+                </div>
+
+                <div>
+                    <label for="comfirm-password">Comfirm password</label>
+                    <input type="password" id="comfirm-password" autocomplete="new-password">
+                </div>
+
+                <div>
+                    <label for="birth-date">Birth Date</label>
+                    <input type="date" id="birth-date" autocomplete="bday">
+                </div>
+
+                <div>
+                    <label for="birth-date">Birth Date</label>
+                    <input type="time" id="birth-date">
+                </div>
+
+                <div>
+                    <label for="birth-date">Birth Date</label>
+                    <input type="datetime-local" id="birth-date">
+                </div>
+
+                <div>
+                    <label for="gender">Gender</label>
+                    <select name="" id="gender">
+                        <option value="">Please Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="college">College</label>
+                    <input type="text" id="college" list="college-list"/>
+                    <datalist id="college-list">
+                        <option>Nirma</option>
+                        <option>Silver Oak University</option>
+                        <option>Sal</option>
+                    </datalist>
+                </div>
+
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+
+                <div>
+                    <label for="age">Age</label>
+                    <input type="number"/>
+                </div>
+
+                <!-- group choice -->
+                <fieldset>
+                    <legend>Gender</legend>
+                    <div>
+                        <label for="male">Male</label>
+                        <input type="radio" id="male">
+                    </div>
+
+                    <div>
+                        <label for="female">Female</label>
+                        <input type="radio" id="female">
+                    </div>
+                </fieldset>
+
+                <!-- only one choice -->
+                <fieldset>
+                    <legend>Gender</legend>
+                    <div>
+                        <label for="male">Male</label>
+                        <input type="radio" id="male" name="gender">
+                    </div>
+
+                    <div>
+                        <label for="female">Female</label>
+                        <input type="radio" id="female" name="gender">
+                    </div>
+                </fieldset>
+
+                <!-- Multipal group choice -->
+                <fieldset>
+                    <legend>Hobbies</legend>
+                    <div>
+                        <label for="cricket">Cricket</label>
+                        <input type="checkbox" id="cricket" name="hobbies">
+                    </div>
+
+                    <div>
+                        <label for="football">Football</label>
+                        <input type="checkbox" id="football" name="hobbiesr">
+                    </div>
+                </fieldset>
+
+
+            </div>
+        </form>
+    </form>
+
+</body>
+
+</html>

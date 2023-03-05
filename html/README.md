@@ -13,3 +13,6 @@
 - [React video player](https://www.npmjs.com/)
 
 - [Google Fonts](https://fonts.google.com/)
+
+- [Emmet shotcat ul>li{iteam $}*4](https://docs.emmet.io/cheat-sheet/)
+
