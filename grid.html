@@ -30,7 +30,7 @@
         grid-column: 1 / -1;
       } */
 
-      .wrapper {
+      /* .wrapper {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(3, 1fr);
@@ -48,18 +48,177 @@
 
       .box:nth-child(2) {
         grid-row: span 2;
+      } */
+
+      /* .wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1rem;
+      }
+
+      .box {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: red;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        
+      }
+
+      .box:nth-child(2) {
+        order: 1;
+      } */
+
+      /* @media screen and (min-width: 640px) {
+        .wrapper {
+          grid-template-columns: repeat(2, 300px);
+        }
+      }
+
+      @media screen and (min-width: 1024px) {
+        .wrapper {
+          grid-template-columns: repeat(3, 300px);
+        }
+      }
+
+      @media screen and (min-width: 1280px) {
+        .wrapper {
+          grid-template-columns: repeat(4, 300px);
+        }
+      }
+
+      @media screen and (min-width: 1536px) {
+        .wrapper {
+          grid-template-columns: repeat(5, 300px);
+        }
+      } */
+
+      .subscribeWrapper {
+        max-width: 500px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+
+      .subscribeWrapper > input[type="text"] {
+        width: 100%;
+        padding: 1rem 0.2rem;
+        border-radius: 9px;
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+      }
+
+      .subscribeWrapper > button[type="button"] {
+        grid-row: 1 / -1;
+        grid-column: 2 / -1;
+        /* position: absolute;
+        right: 0;
+        top: 13px; */
+      }
+
+      @keyframes test {
+        0% {
+          transform: rotate(0deg) scale(1);
+        }
+        25% {
+          transform: rotate(25deg) scale(1.5);
+        }
+        50% {
+          transform: rotate(45deg) scale(2);
+        }
+        75% {
+          transform: rotate(25deg) scale(1.5);
+        }
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+      }
+
+      .box {
+        height: 100px;
+        width: 100px;
+        margin: 400px;
+        background-color: red;
+        /* box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.4); */
+        font-size: 36px;
+        color: white;
+        font-weight: 700;
+        padding: 1rem;
+        /* transition: all 2s ease-out; */
+        /* text-shadow: 10px 10px 10px black; */
+      }
+
+      button:hover + div.box {
+        /* transform: scale(2) rotate(45deg); */
+        animation: test 2s ease;
+        animation-iteration-count: 10;
       }
     </style>
   </head>
   <body>
+    <button>Hover Me</button>
+
+    <div class="box">
+      <p>Hello World</p>
+    </div>
+
+    <!-- <div class="subscribeWrapper">
+      <input type="text" name="" id="" />
+      <button type="button">Submit</button>
+    </div> -->
+
     <div class="wrapper">
-      <div class="box">Item 1</div>
+      <!-- <div class="box">Item 1</div>
       <div class="box">Item 2</div>
       <div class="box">Item 3</div>
-      <div class="box">Item 4</div>
-      <div class="box">Item 5</div>
+      <div class="box">Item 4</div> -->
+      <!-- <div class="box">Item 5</div>
       <div class="box">Item 6</div>
       <div class="box">Item 7</div>
+      <div class="box">Item 8</div>
+      <div class="box">Item 9</div>
+      <div class="box">Item 10</div>
+      <div class="box">Item 11</div>
+      <div class="box">Item 12</div>
+      <div class="box">Item 13</div>
+      <div class="box">Item 14</div>
+      <div class="box">Item 15</div>
+      <div class="box">Item 16</div>
+      <div class="box">Item 17</div>
+      <div class="box">Item 18</div>
+      <div class="box">Item 19</div>
+      <div class="box">Item 20</div>
+      <div class="box">Item 21</div>
+      <div class="box">Item 22</div>
+      <div class="box">Item 23</div>
+      <div class="box">Item 24</div>
+      <div class="box">Item 25</div>
+      <div class="box">Item 26</div>
+      <div class="box">Item 27</div>
+      <div class="box">Item 28</div>
+      <div class="box">Item 29</div>
+      <div class="box">Item 30</div>
+      <div class="box">Item 31</div>
+      <div class="box">Item 32</div>
+      <div class="box">Item 33</div>
+      <div class="box">Item 34</div>
+      <div class="box">Item 35</div>
+      <div class="box">Item 36</div>
+      <div class="box">Item 37</div>
+      <div class="box">Item 38</div>
+      <div class="box">Item 39</div>
+      <div class="box">Item 40</div>
+      <div class="box">Item 41</div>
+      <div class="box">Item 42</div>
+      <div class="box">Item 43</div>
+      <div class="box">Item 44</div>
+      <div class="box">Item 45</div>
+      <div class="box">Item 46</div>
+      <div class="box">Item 47</div>
+      <div class="box">Item 48</div>
+      <div class="box">Item 49</div>
+      <div class="box">Item 50</div> -->
     </div>
   </body>
 </html>
