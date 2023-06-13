@@ -13,6 +13,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@types/react-addons-shallow-compare": "^0.14.22",
+    "clsx": "^1.2.1",
     "react": "^18.2.0",
     "react-addons-shallow-compare": "^15.6.3",
     "react-dom": "^18.2.0"
