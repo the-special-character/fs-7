@@ -1,37 +1,34 @@
-import React, { Component, createRef } from "react";
-import clsx from "clsx";
+import React, { PureComponent, createRef } from "react";
+import TodoForm from "./components/todoForm";
+import TodoList from "./components/todoList";
+import TodoFilter from "./components/todoFilter";
 
 type Props = {};
 
-enum FilterType {
+export enum FilterType {
   all = "all",
   pending = "pending",
   completed = "completed",
 }
 
-type TodoItem = {
+export type TodoItemType = {
   id: number;
   text: string;
   isDone: boolean;
 };
 
 type State = {
-  todoList: TodoItem[];
+  todoList: TodoItemType[];
   filterType: FilterType;
 };
 
-export default class App extends Component<Props, State> {
+export default class App extends PureComponent<Props, State> {
   state = {
     todoList: [],
     filterType: FilterType.all,
   };
 
   inputRef = createRef<HTMLInputElement>();
-
-  // changeText = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(event.target.value);
-  //   this.setState({ todoText: event.target.value });
-  // };
 
   addTodo = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,7 +51,7 @@ export default class App extends Component<Props, State> {
     }
   };
 
-  updateTodo = (x: TodoItem) => {
+  updateTodo = (x: TodoItemType) => {
     this.setState(({ todoList }) => {
       const index = todoList.findIndex((item) => item.id === x.id);
       return {
@@ -67,7 +64,7 @@ export default class App extends Component<Props, State> {
     });
   };
 
-  deleteTodo = (x: TodoItem) => {
+  deleteTodo = (x: TodoItemType) => {
     this.setState(({ todoList }) => {
       const index = todoList.findIndex((item) => item.id === x.id);
       return {
@@ -82,107 +79,19 @@ export default class App extends Component<Props, State> {
 
   render() {
     const { todoList, filterType } = this.state;
+    console.log("redner app");
+
     return (
       <main className="flex flex-col h-screen">
         <h1 className="text-3xl font-sans text-center m-10">Todo App</h1>
-        <form className="flex justify-center" onSubmit={this.addTodo}>
-          <div>
-            <label htmlFor="todoText" className="sr-only">
-              Todo Text
-            </label>
-            <input
-              ref={this.inputRef}
-              type="text"
-              id="todoText"
-              className="rounded-l-md"
-              // value={todoText}
-              // onChange={this.changeText}
-            />
-          </div>
-          <button type="submit" className="btn rounded-l-none">
-            Add Todo
-          </button>
-        </form>
-        <section
-          id="todoList"
-          className="flex flex-1 flex-col mx-4 my-10 gap-4"
-        >
-          {todoList
-            // .filter((x: TodoItem) => {
-            //   if (filterType === FilterType.pending) {
-            //     return !x.isDone;
-            //   } else if (filterType === FilterType.completed) {
-            //     return x.isDone;
-            //   } else {
-            //     return true;
-            //   }
-            // })
-            .map((x: TodoItem) => {
-              if (
-                filterType === FilterType.all ||
-                (filterType === FilterType.pending && !x.isDone) ||
-                (filterType === FilterType.completed && x.isDone)
-              ) {
-                return (
-                  <div key={x.id} className="flex items-center">
-                    <div>
-                      <label htmlFor="isCompleted" className="sr-only">
-                        Is Completed
-                      </label>
-                      <input
-                        type="checkbox"
-                        name="completed"
-                        id="isCompleted"
-                        checked={x.isDone}
-                        onChange={() => this.updateTodo(x)}
-                      />
-                    </div>
-                    <p
-                      className={clsx("flex-1 px-4", {
-                        "line-through": x.isDone,
-                      })}
-                      // style={{
-                      //   textDecoration: x.isDone ? "line-through" : "none",
-                      // }}
-                    >
-                      {x.text}
-                    </p>
-                    <button
-                      type="button"
-                      className="btn"
-                      onClick={() => this.deleteTodo(x)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                );
-              }
-              return null;
-            })}
-        </section>
-        <section className="flex">
-          <button
-            type="button"
-            className="btn flex-1 rounded-none"
-            onClick={() => this.chnageFilterType(FilterType.all)}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            className="btn flex-1 rounded-none"
-            onClick={() => this.chnageFilterType(FilterType.pending)}
-          >
-            Pedning
-          </button>
-          <button
-            type="button"
-            className="btn flex-1 rounded-none"
-            onClick={() => this.chnageFilterType(FilterType.completed)}
-          >
-            Completed
-          </button>
-        </section>
+        <TodoForm addTodo={this.addTodo} ref={this.inputRef} />
+        <TodoList
+          todoList={todoList}
+          filterType={filterType}
+          updateTodo={this.updateTodo}
+          deleteTodo={this.deleteTodo}
+        />
+        <TodoFilter chnageFilterType={this.chnageFilterType} />
       </main>
     );
   }
