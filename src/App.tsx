@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useCallback, useMemo } from "react";
 import TodoForm from "./components/todoForm";
 import TodoList from "./components/todoList";
 import TodoFilter from "./components/todoFilter";
@@ -26,7 +26,7 @@ const App = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const addTodo = (event: React.FormEvent<HTMLFormElement>) => {
+  const addTodo = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const inputEle = inputRef.current;
     if (inputEle) {
@@ -39,9 +39,9 @@ const App = () => {
       });
       inputEle.value = "";
     }
-  };
+  }, []);
 
-  const updateTodo = (x: TodoItemType) => {
+  const updateTodo = useCallback((x: TodoItemType) => {
     setTodoList((val) => {
       const index = val.findIndex((item) => item.id === x.id);
       return [
@@ -50,18 +50,27 @@ const App = () => {
         ...val.slice(index + 1),
       ];
     });
-  };
+  }, []);
 
-  const deleteTodo = (x: TodoItemType) => {
+  const deleteTodo = useCallback((x: TodoItemType) => {
     setTodoList((val) => {
       const index = val.findIndex((item) => item.id === x.id);
       return [...val.slice(0, index), ...val.slice(index + 1)];
     });
-  };
+  }, []);
 
-  const chnageFilterType = (filterType: FilterType) => {
+  const chnageFilterType = useCallback((filterType: FilterType) => {
     setFilterType(filterType);
-  };
+  }, []);
+
+  const btns = useMemo(
+    () => [
+      { value: FilterType.all, text: "All" },
+      { value: FilterType.pending, text: "Pending" },
+      { value: FilterType.completed, text: "Completed" },
+    ],
+    []
+  );
 
   return (
     <main className="flex flex-col h-screen">
@@ -73,7 +82,7 @@ const App = () => {
         updateTodo={updateTodo}
         deleteTodo={deleteTodo}
       />
-      <TodoFilter chnageFilterType={chnageFilterType} />
+      <TodoFilter chnageFilterType={chnageFilterType} btns={btns} />
     </main>
   );
 };

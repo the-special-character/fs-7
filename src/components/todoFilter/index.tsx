@@ -1,35 +1,30 @@
 import { memo } from "react";
 import { FilterType } from "../../App";
 
-type Props = {
-  chnageFilterType: (item: FilterType) => void;
+type BTNType = {
+  value: FilterType;
+  text: string;
 };
 
-const TodoFilter = memo(({ chnageFilterType }: Props) => {
+type Props = {
+  chnageFilterType: (item: FilterType) => void;
+  btns: BTNType[];
+};
+
+const TodoFilter = memo(({ chnageFilterType, btns }: Props) => {
   console.log("redner TodoFilter");
   return (
     <section className="flex">
-      <button
-        type="button"
-        className="btn flex-1 rounded-none"
-        onClick={() => chnageFilterType(FilterType.all)}
-      >
-        All
-      </button>
-      <button
-        type="button"
-        className="btn flex-1 rounded-none"
-        onClick={() => chnageFilterType(FilterType.pending)}
-      >
-        Pedning
-      </button>
-      <button
-        type="button"
-        className="btn flex-1 rounded-none"
-        onClick={() => chnageFilterType(FilterType.completed)}
-      >
-        Completed
-      </button>
+      {btns.map((x) => (
+        <button
+          key={x.value}
+          type="button"
+          className="btn flex-1 rounded-none"
+          onClick={() => chnageFilterType(x.value)}
+        >
+          {x.text}
+        </button>
+      ))}
     </section>
   );
 });
