@@ -1,4 +1,10 @@
-import React, { useRef, useState, useCallback, useMemo } from "react";
+import React, {
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+} from "react";
 import TodoForm from "./components/todoForm";
 import TodoList from "./components/todoList";
 import TodoFilter from "./components/todoFilter";
@@ -26,42 +32,71 @@ const App = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const addTodo = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const inputEle = inputRef.current;
-    if (inputEle) {
-      const todoText = inputEle.value;
-      setTodoList((val) => {
-        return [
-          ...val,
-          { id: new Date().valueOf(), text: todoText, isDone: false },
-        ];
+  const addTodo = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      try {
+        event.preventDefault();
+        const inputEle = inputRef.current;
+
+        if (inputEle) {
+          const todoText = inputEle.value;
+          const res = await fetch("http://localhost:3000/todoList", {
+            method: "POST",
+            body: JSON.stringify({
+              text: todoText,
+              isDone: false,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          });
+          const json = await res.json();
+
+          setTodoList((val) => {
+            return [...val, json];
+          });
+          inputEle.value = "";
+        }
+      } catch (error) {}
+    },
+    []
+  );
+
+  const updateTodo = useCallback(async (x: TodoItemType) => {
+    try {
+      const res = await fetch(`http://localhost:3000/todoList/${x.id}`, {
+        method: "PUT",
+        body: JSON.stringify({ ...x, isDone: !x.isDone }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       });
-      inputEle.value = "";
-    }
+      const json = await res.json();
+
+      setTodoList((val) => {
+        const index = val.findIndex((item) => item.id === x.id);
+        return [...val.slice(0, index), json, ...val.slice(index + 1)];
+      });
+    } catch (error) {}
   }, []);
 
-  const updateTodo = useCallback((x: TodoItemType) => {
-    setTodoList((val) => {
-      const index = val.findIndex((item) => item.id === x.id);
-      return [
-        ...val.slice(0, index),
-        { ...val[index], isDone: !x.isDone },
-        ...val.slice(index + 1),
-      ];
-    });
+  const deleteTodo = useCallback(async (x: TodoItemType) => {
+    try {
+      await fetch(`http://localhost:3000/todoList/${x.id}`, {
+        method: "DELETE",
+      });
+      setTodoList((val) => {
+        const index = val.findIndex((item) => item.id === x.id);
+        return [...val.slice(0, index), ...val.slice(index + 1)];
+      });
+    } catch (error) {}
   }, []);
 
-  const deleteTodo = useCallback((x: TodoItemType) => {
-    setTodoList((val) => {
-      const index = val.findIndex((item) => item.id === x.id);
-      return [...val.slice(0, index), ...val.slice(index + 1)];
-    });
-  }, []);
-
-  const chnageFilterType = useCallback((filterType: FilterType) => {
-    setFilterType(filterType);
-  }, []);
+  // const chnageFilterType = useCallback((filterType: FilterType) => {
+  //   setFilterType(filterType);
+  // }, []);
 
   const btns = useMemo(
     () => [
@@ -71,6 +106,23 @@ const App = () => {
     ],
     []
   );
+
+  const loadTodo = async (ft) => {
+    try {
+      let url = "http://localhost:3000/todoList";
+      if (ft !== "all") {
+        url = `${url}?isDone=${ft === "completed"}`;
+      }
+      const res = await fetch(url);
+      const json = await res.json();
+      setTodoList(json);
+    } catch (error) {}
+  };
+
+  // component Did Mount
+  useEffect(() => {
+    loadTodo("all");
+  }, []);
 
   return (
     <main className="flex flex-col h-screen">
@@ -82,7 +134,7 @@ const App = () => {
         updateTodo={updateTodo}
         deleteTodo={deleteTodo}
       />
-      <TodoFilter chnageFilterType={chnageFilterType} btns={btns} />
+      <TodoFilter chnageFilterType={loadTodo} btns={btns} />
     </main>
   );
 };
