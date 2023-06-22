@@ -1,39 +1,23 @@
-import { FilterType, TodoItemType } from "../../App";
 import { memo } from "react";
 import TodoItem from "../todoItem";
+import TodoContext from "../../context/todoApp";
 
-type Props = {
-  updateTodo: (item: TodoItemType) => void;
-  deleteTodo: (item: TodoItemType) => void;
-  filterType: FilterType;
-  todoList: TodoItemType[];
-};
-
-const TodoList = memo(
-  ({ todoList, filterType, updateTodo, deleteTodo }: Props) => {
-    console.log("redner TodoList");
-    return (
-      <section id="todoList" className="flex flex-1 flex-col mx-4 my-10 gap-4">
-        {todoList.map((x: TodoItemType) => {
-          if (
-            filterType === FilterType.all ||
-            (filterType === FilterType.pending && !x.isDone) ||
-            (filterType === FilterType.completed && x.isDone)
-          ) {
-            return (
-              <TodoItem
-                key={x.id}
-                todoItem={x}
-                updateTodo={updateTodo}
-                deleteTodo={deleteTodo}
-              />
-            );
-          }
-          return null;
-        })}
-      </section>
-    );
-  }
-);
+const TodoList = memo(() => {
+  console.log("redner TodoList");
+  return (
+    <TodoContext.Consumer>
+      {({ todoList }) => (
+        <section
+          id="todoList"
+          className="flex flex-1 flex-col mx-4 my-10 gap-4"
+        >
+          {todoList.map((x) => {
+            return <TodoItem key={x.id} todoItem={x} />;
+          })}
+        </section>
+      )}
+    </TodoContext.Consumer>
+  );
+});
 
 export default TodoList;

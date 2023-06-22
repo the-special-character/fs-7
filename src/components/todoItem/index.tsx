@@ -1,14 +1,12 @@
 import clsx from "clsx";
-import { TodoItemType } from "../../App";
 import { memo } from "react";
+import TodoContext, { TodoItemType } from "../../context/todoApp";
 
 type Props = {
   todoItem: TodoItemType;
-  updateTodo: (item: TodoItemType) => void;
-  deleteTodo: (item: TodoItemType) => void;
 };
 
-const TodoItem = memo(({ todoItem, updateTodo, deleteTodo }: Props) => {
+const TodoItem = memo(({ todoItem }: Props) => {
   console.log("Todo Item render");
   return (
     <div key={todoItem.id} className="flex items-center">
@@ -16,13 +14,17 @@ const TodoItem = memo(({ todoItem, updateTodo, deleteTodo }: Props) => {
         <label htmlFor="isCompleted" className="sr-only">
           Is Completed
         </label>
-        <input
-          type="checkbox"
-          name="completed"
-          id="isCompleted"
-          checked={todoItem.isDone}
-          onChange={() => updateTodo(todoItem)}
-        />
+        <TodoContext.Consumer>
+          {({ updateTodo }) => (
+            <input
+              type="checkbox"
+              name="completed"
+              id="isCompleted"
+              checked={todoItem.isDone}
+              onChange={() => updateTodo(todoItem)}
+            />
+          )}
+        </TodoContext.Consumer>
       </div>
       <p
         className={clsx("flex-1 px-4", {
@@ -31,13 +33,31 @@ const TodoItem = memo(({ todoItem, updateTodo, deleteTodo }: Props) => {
       >
         {todoItem.text}
       </p>
-      <button
-        type="button"
-        className="btn"
-        onClick={() => deleteTodo(todoItem)}
-      >
-        Delete
-      </button>
+      {/* <ThemeContext.Consumer>
+        {(value) => {
+          console.log("rerender");
+
+          return (
+            <div>
+              <p>{value.theme}</p>
+              <button type="button" className="btn" onClick={value.toggleTheme}>
+                Change Theme
+              </button>
+            </div>
+          );
+        }}
+      </ThemeContext.Consumer> */}
+      <TodoContext.Consumer>
+        {({ deleteTodo }) => (
+          <button
+            type="button"
+            className="btn"
+            onClick={() => deleteTodo(todoItem)}
+          >
+            Delete
+          </button>
+        )}
+      </TodoContext.Consumer>
     </div>
   );
 });

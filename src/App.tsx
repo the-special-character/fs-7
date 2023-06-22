@@ -1,88 +1,14 @@
-import React, { useRef, useState, useCallback, useMemo } from "react";
 import TodoForm from "./components/todoForm";
 import TodoList from "./components/todoList";
 import TodoFilter from "./components/todoFilter";
 
-export enum FilterType {
-  all = "all",
-  pending = "pending",
-  completed = "completed",
-}
-
-export type TodoItemType = {
-  id: number;
-  text: string;
-  isDone: boolean;
-};
-
-type State = {
-  todoList: TodoItemType[];
-  filterType: FilterType;
-};
-
 const App = () => {
-  const [todoList, setTodoList] = useState<TodoItemType[]>([]);
-  const [filterType, setFilterType] = useState(FilterType.all);
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const addTodo = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const inputEle = inputRef.current;
-    if (inputEle) {
-      const todoText = inputEle.value;
-      setTodoList((val) => {
-        return [
-          ...val,
-          { id: new Date().valueOf(), text: todoText, isDone: false },
-        ];
-      });
-      inputEle.value = "";
-    }
-  }, []);
-
-  const updateTodo = useCallback((x: TodoItemType) => {
-    setTodoList((val) => {
-      const index = val.findIndex((item) => item.id === x.id);
-      return [
-        ...val.slice(0, index),
-        { ...val[index], isDone: !x.isDone },
-        ...val.slice(index + 1),
-      ];
-    });
-  }, []);
-
-  const deleteTodo = useCallback((x: TodoItemType) => {
-    setTodoList((val) => {
-      const index = val.findIndex((item) => item.id === x.id);
-      return [...val.slice(0, index), ...val.slice(index + 1)];
-    });
-  }, []);
-
-  const chnageFilterType = useCallback((filterType: FilterType) => {
-    setFilterType(filterType);
-  }, []);
-
-  const btns = useMemo(
-    () => [
-      { value: FilterType.all, text: "All" },
-      { value: FilterType.pending, text: "Pending" },
-      { value: FilterType.completed, text: "Completed" },
-    ],
-    []
-  );
-
   return (
     <main className="flex flex-col h-screen">
       <h1 className="text-3xl font-sans text-center m-10">Todo App</h1>
-      <TodoForm addTodo={addTodo} ref={inputRef} />
-      <TodoList
-        todoList={todoList}
-        filterType={filterType}
-        updateTodo={updateTodo}
-        deleteTodo={deleteTodo}
-      />
-      <TodoFilter chnageFilterType={chnageFilterType} btns={btns} />
+      <TodoForm />
+      <TodoList />
+      <TodoFilter />
     </main>
   );
 };
