@@ -1,9 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import NotFound from "./pages/NotFound";
+import MainLayout from "./layouts/mainLayout";
+import About from "./pages/About";
+import AuthLayout from "./layouts/authLayout";
 import "./index.css";
-import ThemeContext, { ThemeProvider } from "./context/themeContext.tsx";
-import { TodoProvider } from "./context/todoApp.tsx";
 
 // Mounting
 
@@ -25,15 +30,43 @@ import { TodoProvider } from "./context/todoApp.tsx";
 // Error (not possible in function component)
 // -> getDerivedStateFromError(static) (display error)
 // -> componentDidCatch (log error)
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        index: true,
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  // <React.StrictMode>
-  // <ThemeContext.Provider value="es">
-  <ThemeProvider>
-    <TodoProvider>
-      <App />
-    </TodoProvider>
-  </ThemeProvider>
-  // </ThemeContext.Provider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );
