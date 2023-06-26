@@ -1,88 +1,99 @@
+import { useForm } from "react-hook-form";
+import Input from "../../components/Input";
+
+const wait = (t: number) => new Promise((resolve) => setTimeout(resolve, t));
+
 type Props = {};
 
 const Register = (props: Props) => {
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    control,
+    formState: { errors, isSubmitting, isValid },
+  } = useForm({
+    mode: "onBlur",
+  });
+
+  const onSubmit = async (data) => {
+    await wait(5000);
+    console.log(data);
+  };
+
   return (
-    <form className="space-y-6" action="#" method="POST">
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
-          Name
-        </label>
-        <div className="mt-2">
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="name"
-            required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
-          Email address
-        </label>
-        <div className="mt-2">
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label
-          htmlFor="password"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
-          Password
-        </label>
-        <div className="mt-2">
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label
-          htmlFor="confirmPassword"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
-          Confirm Password
-        </label>
-        <div className="mt-2">
-          <input
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-            autoComplete="new-password"
-            required
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-        </div>
-      </div>
+    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        control={control}
+        name="name"
+        rules={{
+          required: {
+            value: true,
+            message: "Name is Required..",
+          },
+        }}
+        label="Name"
+        id="name"
+        autoComplete="name"
+      />
+      <Input
+        control={control}
+        rules={{
+          required: {
+            value: true,
+            message: "Email is Required..",
+          },
+          pattern: {
+            value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+            message: "Please Provide valid email address",
+          },
+        }}
+        name="email"
+        label="Email"
+        id="email"
+        type="email"
+        autoComplete="email"
+      />
+      <Input
+        control={control}
+        name="password"
+        rules={{
+          required: {
+            value: true,
+            message: "Password is Required..",
+          },
+        }}
+        label="Password"
+        id="password"
+        type="password"
+        autoComplete="new-password"
+      />
+      <Input
+        control={control}
+        name="confirmPassword"
+        rules={{
+          required: {
+            value: true,
+            message: "confirm Password is Required..",
+            validate: (value) => {
+              const { password } = getValues();
+              return (
+                value === password || "Password should match confirm password"
+              );
+            },
+          },
+        }}
+        label="Confirm Password"
+        id="confirmPassword"
+        type="password"
+        autoComplete="new-password"
+      />
 
       <div>
         <button
           type="submit"
-          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          disabled={isSubmitting || !isValid}
+          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-slate-400 disabled:cursor-wait"
         >
           Sign up
         </button>
