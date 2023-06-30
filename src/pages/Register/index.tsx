@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import Input from "../../components/Input";
 import Radio from "../../components/Radio";
 import Select from "../../components/Select";
+import Checkbox from "../../components/Checkbox";
+import File from "../../components/FileComponent";
 
 const wait = (t: number) => new Promise((resolve) => setTimeout(resolve, t));
 
@@ -39,6 +41,20 @@ const Register = (props: Props) => {
         label="Name"
         id="name"
         autoComplete="name"
+      />
+
+      <File
+        control={control}
+        name="avatar"
+        rules={{
+          required: {
+            value: true,
+            message: "avatar is Required..",
+          },
+        }}
+        label="Avatar"
+        id="avatar"
+        multiple
       />
       <Input
         control={control}
@@ -136,6 +152,33 @@ const Register = (props: Props) => {
           },
         }}
       />
+      <Checkbox
+        label="Hobbies"
+        items={[
+          {
+            id: "cricket",
+            text: "Cricket",
+          },
+          {
+            id: "hoccky",
+            text: "Hoccky",
+          },
+          {
+            id: "football",
+            text: "Football",
+          },
+        ]}
+        name="hobbies"
+        control={control}
+        defaultValue={[]}
+        rules={{
+          required: {
+            value: true,
+            message: "Hobbies is Required..",
+          },
+        }}
+      />
+      <input type="file" name="" id="" />
       <div>
         <button
           type="submit"
