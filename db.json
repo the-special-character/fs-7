@@ -35,5 +35,19 @@
       "isDone": false,
       "id": 11
     }
+  ],
+  "users": [
+    {
+      "email": "yagnesh.modh@gmail.com",
+      "password": "$2a$10$fb4j5582Gnwse7UE9qDvpuJPBgYgD/7PAqTGVyDWoiT.6OPl8bNpK",
+      "name": "PRODUCTIZE IT (OPC) PRIVATE LIMITED",
+      "gender": "female",
+      "hobbies": [
+        "hoccky",
+        "cricket",
+        "football"
+      ],
+      "id": 1
+    }
   ]
 }

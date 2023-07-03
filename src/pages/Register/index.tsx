@@ -4,6 +4,9 @@ import Radio from "../../components/Radio";
 import Select from "../../components/Select";
 import Checkbox from "../../components/Checkbox";
 import File from "../../components/FileComponent";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 const wait = (t: number) => new Promise((resolve) => setTimeout(resolve, t));
 
@@ -19,16 +22,12 @@ const Register = (props: Props) => {
   } = useForm({
     mode: "onBlur",
   });
-
-  const onSubmit = async (data) => {
-    await wait(5000);
-    console.log(data);
-  };
+  const { register } = useContext(AuthContext);
 
   console.log(watch("gender"));
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+    <form className="space-y-6" onSubmit={handleSubmit(register)}>
       <Input
         control={control}
         name="name"
@@ -42,8 +41,7 @@ const Register = (props: Props) => {
         id="name"
         autoComplete="name"
       />
-
-      <File
+      {/* <File
         control={control}
         name="avatar"
         rules={{
@@ -55,7 +53,7 @@ const Register = (props: Props) => {
         label="Avatar"
         id="avatar"
         multiple
-      />
+      /> */}
       <Input
         control={control}
         rules={{
@@ -108,7 +106,7 @@ const Register = (props: Props) => {
         type="password"
         autoComplete="new-password"
       />
-      <Select
+      {/* <Select
         control={control}
         name="hobbies"
         rules={{
@@ -126,7 +124,7 @@ const Register = (props: Props) => {
             text: "Cricket",
           },
         ]}
-      />
+      /> */}
       <Radio
         label="Gender"
         items={[
@@ -178,7 +176,6 @@ const Register = (props: Props) => {
           },
         }}
       />
-      <input type="file" name="" id="" />
       <div>
         <button
           type="submit"

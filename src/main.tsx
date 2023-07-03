@@ -9,6 +9,7 @@ import MainLayout from "./layouts/mainLayout";
 import About from "./pages/About";
 import AuthLayout from "./layouts/authLayout";
 import "./index.css";
+import { AuthProvider } from "./context/authContext";
 
 // Mounting
 
@@ -67,6 +68,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
