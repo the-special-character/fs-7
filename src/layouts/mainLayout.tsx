@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { Outlet, useNavigate, Navigate } from "react-router-dom";
+import Header from "../components/Header/index.js";
 import { AuthContext } from "../context/authContext";
 
 type Props = {};
@@ -13,7 +14,7 @@ const MainLayout = (props: Props) => {
 
   return (
     <>
-      <header>Header....</header>
+      <Header />
       <main>
         <Outlet />
       </main>

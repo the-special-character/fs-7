@@ -11,6 +11,8 @@
     "server": "json-server --watch db.json -m ./node_modules/json-server-auth"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@types/react-addons-shallow-compare": "^0.14.22",
