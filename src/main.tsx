@@ -11,6 +11,7 @@ import AuthLayout from "./layouts/authLayout";
 import "./index.css";
 import { AuthProvider } from "./context/authContext";
 import Product from "./pages/Product/index.js";
+import { ProductsProvider } from "./context/productsContext.js";
 
 // Mounting
 
@@ -35,10 +36,18 @@ import Product from "./pages/Product/index.js";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <ProductsProvider>
+        <MainLayout />
+      </ProductsProvider>
+    ),
     children: [
       {
         index: true,
+        element: <Home />,
+      },
+      {
+        path: ":productCategory",
         element: <Home />,
       },
       {
