@@ -42,7 +42,11 @@
       "password": "$2a$10$fb4j5582Gnwse7UE9qDvpuJPBgYgD/7PAqTGVyDWoiT.6OPl8bNpK",
       "name": "PRODUCTIZE IT (OPC) PRIVATE LIMITED",
       "gender": "female",
-      "hobbies": ["hoccky", "cricket", "football"],
+      "hobbies": [
+        "hoccky",
+        "cricket",
+        "football"
+      ],
       "id": 1
     }
   ],
@@ -286,6 +290,38 @@
         "rate": 3.6,
         "count": 145
       }
+    }
+  ],
+  "cart": [
+    {
+      "productId": 1,
+      "quantity": 1,
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "productId": 4,
+      "quantity": 1,
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "productId": 3,
+      "quantity": 1,
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "productId": 2,
+      "quantity": 1,
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "productId": 7,
+      "quantity": 1,
+      "userId": 1,
+      "id": 5
     }
   ]
 }
