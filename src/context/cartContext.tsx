@@ -44,9 +44,23 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     [user?.user?.id]
   );
 
+  const updateCart = useCallback(async (data) => {
+    try {
+      const url = `660/cart/${data.id}`;
+      const res = await axiosInstance.put(url, data);
+      setCart((val) => {
+        const index = val.findIndex((x) => x.id === res.id);
+        return [...val.slice(0, index), res, ...val.slice(index + 1)];
+      });
+      //   setCart(res);
+    } catch (error) {
+      //   console.log(error.message);
+    }
+  }, []);
+
   const value = useMemo(
-    () => ({ cart, loadCart, addToCart }),
-    [cart, loadCart, addToCart]
+    () => ({ cart, loadCart, addToCart, updateCart }),
+    [cart, loadCart, addToCart, updateCart]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

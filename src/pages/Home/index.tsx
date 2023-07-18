@@ -14,7 +14,7 @@ function classNames(...classes) {
 
 const Home = ({ routes }: Props) => {
   const { products, loadProducts } = useProducts();
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, updateCart } = useCart();
   const { productCategory } = useParams();
   const [searchParams] = useSearchParams();
 
@@ -114,7 +114,7 @@ const Home = ({ routes }: Props) => {
                   type="button"
                   className="mt-2 flex-1 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={() =>
-                    addToCart({ productId: product.id, quantity: 1 })
+                    updateCart({ ...cartItem, quantity: cartItem.quantity + 1 })
                   }
                 >
                   +
@@ -124,7 +124,7 @@ const Home = ({ routes }: Props) => {
                   type="button"
                   className="mt-2 flex-1 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   onClick={() =>
-                    addToCart({ productId: product.id, quantity: 1 })
+                    updateCart({ ...cartItem, quantity: cartItem.quantity - 1 })
                   }
                 >
                   -
