@@ -13,6 +13,7 @@ import { AuthProvider } from "./context/authContext";
 import Product from "./pages/Product/index.js";
 import { ProductsProvider } from "./context/productsContext.js";
 import { CartProvider } from "./context/cartContext.tsx";
+import { AppProvider } from "./context/appContext.tsx";
 
 // Mounting
 
@@ -38,11 +39,13 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <ProductsProvider>
-        <CartProvider>
-          <MainLayout />
-        </CartProvider>
-      </ProductsProvider>
+      <AppProvider>
+        <ProductsProvider>
+          <CartProvider>
+            <MainLayout />
+          </CartProvider>
+        </ProductsProvider>
+      </AppProvider>
     ),
     children: [
       {

@@ -58,9 +58,22 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     }
   }, []);
 
+  const deleteCart = useCallback(async (data) => {
+    try {
+      const url = `660/cart/${data.id}`;
+      await axiosInstance.delete(url);
+      setCart((val) => {
+        const index = val.findIndex((x) => x.id === data.id);
+        return [...val.slice(0, index), ...val.slice(index + 1)];
+      });
+    } catch (error) {
+      //   console.log(error.message);
+    }
+  }, []);
+
   const value = useMemo(
-    () => ({ cart, loadCart, addToCart, updateCart }),
-    [cart, loadCart, addToCart, updateCart]
+    () => ({ cart, loadCart, addToCart, updateCart, deleteCart }),
+    [cart, loadCart, addToCart, updateCart, deleteCart]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

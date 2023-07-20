@@ -26,6 +26,7 @@ import { AuthContext } from "../context/authContext";
 import { useProducts } from "../context/productsContext.js";
 import { Range, getTrackBackground } from "react-range";
 import { useCart } from "../context/cartContext.tsx";
+import Cart from "../components/Cart";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -126,6 +127,8 @@ const MainLayout = (props: Props) => {
   return (
     <>
       <Header />
+
+      <Cart />
 
       <div className="bg-white">
         <div>
