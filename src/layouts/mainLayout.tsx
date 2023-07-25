@@ -27,6 +27,7 @@ import { useProducts } from "../context/productsContext.js";
 import { Range, getTrackBackground } from "react-range";
 import { useCart } from "../context/cartContext.tsx";
 import Cart from "../components/Cart";
+import ErrorMessage from "../components/Error/index.tsx";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -593,6 +594,8 @@ const MainLayout = (props: Props) => {
         <Outlet />
       </main> */}
       <footer>Footer...</footer>
+
+      <ErrorMessage />
     </>
   );
 };
