@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const app = express();
 var cors = require('cors')
 const productsRoute = require("./routes/products.route")
+const authRoute = require("./routes/auth.route")
+const userRoute = require("./routes/user.route")
 
 const port = 3000;
 
@@ -27,6 +29,7 @@ var corsOptionsDelegate = function (req, callback) {
 }
 
 app.use(cors(corsOptionsDelegate))
+app.use(express.json());
 
 
 app.get("/", (req, res, next) => {
@@ -35,6 +38,8 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/products", productsRoute)
+app.use("/auth", authRoute)
+app.use("/users", userRoute)
 
 
 app.listen(port, () => {
