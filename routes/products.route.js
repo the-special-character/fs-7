@@ -1,27 +1,29 @@
-const express = require('express')
+const express = require("express");
+const ProductController = require("../controller/product.controller");
+const validate = require("../middleware/validation.middleware");
+const productSchema = require("../schema/product.schema")
 
-const router = express.Router()
+const productController = new ProductController();
 
-router.get("/", function(req, res, next) {
-    console.log("hello products");
-    res.send("get products data")
-})
+const router = express.Router();
 
-router.get("/:id", function(req, res, next) {
-    res.send("get products data")
-})
+router.get("/", function (req, res, next) {
+  console.log("hello products");
+  res.send("get products data");
+});
 
-router.post("/", function(req, res, next) {
-    res.send("get products data")
-})
+router.get("/:id", function (req, res, next) {
+  res.send("get products data");
+});
 
-router.put("/:id", function(req, res, next) {
-    res.send("get products data")
-})
+router.post("/", validate(productSchema), productController.saveProduct);
 
+router.put("/:id", productController.updateProruct);
 
-router.delete("/:id", function(req, res, next) {
-    res.send("get products data")
-})
+router.patch("/:id", productController.patchProduct);
 
-module.exports = router
+router.delete("/:id", function (req, res, next) {
+  res.send("get products data");
+});
+
+module.exports = router;
