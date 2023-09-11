@@ -1,10 +1,13 @@
+var jwt = require('jsonwebtoken');
 const UserModel = require("../models/user.model");
+
 
 class AuthController {
   register = async  (req, res)  => {
     try {
       const User = new UserModel(req.body);
       await User.save();
+      
       res.send("register success");
     } catch (error) {
       console.log(error);
@@ -23,7 +26,8 @@ class AuthController {
         if(!match) {
             throw new Error("password is not valid")
         }
-        res.send(user);
+        var accessToken = jwt.sign({ id: user._id, email: user.email }, process.env.PRIVATE_TOKEN);
+        res.send({accessToken,user});
     } catch (error) {
         res.send(error.message)
     }

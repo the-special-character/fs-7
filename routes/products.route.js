@@ -1,18 +1,19 @@
 const express = require("express");
 const ProductController = require("../controller/product.controller");
 const validate = require("../middleware/validation.middleware");
-const productSchema = require("../schema/product.schema")
+const productSchema = require("../schema/product.schema");
+const authenticate = require("../middleware/authanticate.middleware");
 
 const productController = new ProductController();
 
 const router = express.Router();
 
-router.get("/", function (req, res, next) {
+router.get("/", [authenticate], function (req, res, next) {
   console.log("hello products");
   res.send("get products data");
 });
 
-router.get("/:id", function (req, res, next) {
+router.get("/:id", [authenticate], function (req, res, next) {
   res.send("get products data");
 });
 
